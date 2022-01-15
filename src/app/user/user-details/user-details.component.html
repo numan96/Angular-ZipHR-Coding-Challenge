@@ -1,0 +1,64 @@
+<div
+  class="h-25 bg-primary text-white p-5 d-flex align-items-start flex-column justify-content-center"
+>
+  <div *ngIf="isLoading" style="text-align: center">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="container" *ngIf="!isLoading">
+    <h1>
+      <p>{{ userDetails.name }}</p>
+    </h1>
+    <p class="text-dark">
+      @{{ userDetails.username }} - {{ userDetails.email }} -
+
+      {{ userDetails.website }} - {{ userDetails.company.name }} -
+      {{ userDetails.address.city }}
+    </p>
+  </div>
+</div>
+<div class="container" *ngIf="userDetails">
+  <div class="row mt-3">
+    <div class="card-group">
+      <div class="col-md-6">
+        <div class="card h-50">
+          <div class="card-header">
+            <div class="card-text mt-3"><p>Albums</p></div>
+          </div>
+          <div class="overflow-auto">
+            <div
+              class="card-body overflow-auto"
+              *ngFor="let albums of userDetails.albums"
+            >
+              <a
+                class="text-decoration-none"
+                routerLink="../../albums/{{ albums.id }}"
+              >
+                {{ albums.title }}</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card h-50">
+          <div class="card-header">
+            <div class="card-text mt-3"><p>Posts</p></div>
+          </div>
+          <div class="overflow-auto">
+            <div class="card-body" *ngFor="let posts of userDetails.posts">
+              <a
+                class="text-decoration-none"
+                routerLink="../../posts/{{ posts.id }}"
+              >
+                {{ posts.title }}</a
+              >
+
+              <p class="text-truncate">{{ posts.body }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

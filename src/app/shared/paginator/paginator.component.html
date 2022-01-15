@@ -1,0 +1,17 @@
+<nav class="d-flex justify-content-center w100">
+  <ul class="pagination">
+    <li class="page-item">
+      <a (click)="previousOrNext('previous')" class="page-link">Previous</a>
+    </li>
+    <li
+      *ngFor="let pageNumber of numberList"
+      class="page-item"
+      [ngClass]="{ active: currentPage === pageNumber }"
+    >
+      <a (click)="loadPage(pageNumber)" class="page-link">{{ pageNumber }}</a>
+    </li>
+    <li class="page-item">
+      <a (click)="previousOrNext('next')" class="page-link">Next</a>
+    </li>
+  </ul>
+</nav>

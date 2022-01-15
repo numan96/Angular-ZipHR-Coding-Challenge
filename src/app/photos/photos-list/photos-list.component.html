@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="text-muted mt-2">
+    <a class="text-decoration-none" routerLink="/dashboard">Dashboard</a>
+    / Photos
+  </div>
+  <h1 class="mt-2">Photos</h1>
+
+  <app-images-list
+    (sortProperty)="sortDataByProperty($event)"
+    (updateData)="updateDataSource($event)"
+    [isLoading]="isLoading"
+    [imagesList]="imagesList"
+    [initialImagesList]="initialImagesList"
+    [currentPage]="currentPage"
+    [selectOptions]="selectOptions"
+    [pageOffset]="pageOffset"
+  ></app-images-list>
+</div>

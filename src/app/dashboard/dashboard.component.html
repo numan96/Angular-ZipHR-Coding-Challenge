@@ -1,0 +1,87 @@
+<div
+  class="h-25 bg-dark text-white p-5 d-flex align-items-start flex-column justify-content-center"
+>
+  <small>Welcome to</small>
+  <h1>ZipHR Coding Challenge</h1>
+</div>
+<div *ngIf="isLoading" style="text-align: center">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+
+<div class="container">
+  <div class="row h-25 p-3">
+    <div class="col-6 col-md-4">
+      <div class="card" *ngIf="!isLoading">
+        <div class="card-header">
+          <div class="card-title">
+            <p class="font-weight-bold">Statistics</p>
+          </div>
+        </div>
+        <div
+          class="card-body d-flex flex-row justify-content-between bg-light flex-wrap"
+        >
+          <div>
+            <h3 class="text-success font-weight-bold">{{ postsTotal }}</h3>
+            <p>Posts</p>
+          </div>
+
+          <div>
+            <h3 class="text-success font-weight-bold">{{ albumsTotal }}</h3>
+            <p>Albums</p>
+          </div>
+
+          <div>
+            <h3 class="text-success font-weight-bold">{{ photosTotal }}</h3>
+            <p>Photos</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-4">
+      <div class="card h-25" *ngIf="!isLoading">
+        <div class="card-header">
+          <div class="card-text">
+            <p class="font-weight-bold">Latest Posts</p>
+          </div>
+        </div>
+        <div class="overflow-auto">
+          <div
+            class="card-body"
+            *ngFor="let posts of latestPosts | slice: 0:20"
+          >
+            <a
+              class="text-decoration-none"
+              routerLink="../posts/{{ posts.id }}"
+            >
+              <p class="text-truncate">{{ posts.title }}</p></a
+            >
+
+            <p class="text-truncate">{{ posts.body }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-4">
+      <div class="card h-25" *ngIf="!isLoading">
+        <div class="card-header">
+          <div class="card-text">
+            <p class="font-weight-bold">Recent Photos</p>
+          </div>
+        </div>
+        <div class="overflow-auto d-flex flex-row flex-wrap">
+          <div
+            *ngFor="let photos of latestPhotos | slice: 0:30"
+            class="card-body justify-content-around"
+            style="max-width: 25%"
+          >
+            <img src="{{ photos.thumbnailUrl }}" class="photos" />
+
+            <p class="text-truncate">{{ photos.title }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

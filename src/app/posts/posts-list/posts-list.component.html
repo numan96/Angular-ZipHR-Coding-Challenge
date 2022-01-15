@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="text-muted mt-2">
+    <a class="text-decoration-none" routerLink="/dashboard">Dashboard</a>
+    / Posts
+  </div>
+  <h1 class="mt-2">Posts</h1>
+
+  <div class="d-flex flex-row">
+    <app-search
+      (sortProperty)="sortDataByProperty($event)"
+      (searchValues)="updateDataSource($event)"
+      [selectOptions]="selectOptions"
+      [placeholder]="'Search Posts'"
+      [initialValues]="initialPostsList"
+    ></app-search>
+  </div>
+
+  <div *ngIf="isLoading" style="text-align: center">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="mt-2" *ngIf="!isLoading">
+    <table class="table table-bordered" style="table-layout: fixed">
+      <thead>
+        <tr>
+          <th scope="col" style="width: 5%">ID</th>
+          <th scope="col" style="width: 5%">User</th>
+          <th scope="col" style="width: 50%">Title</th>
+          <th scope="col" style="width: 40%">Content</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let posts of postsList">
+          <td scope="row">
+            {{ posts.id }}
+          </td>
+          <td>
+            <a
+              class="text-decoration-none"
+              routerLink="../user/{{ posts.userId }}"
+              >User {{ posts.userId }}</a
+            >
+          </td>
+          <td>
+            <a class="text-decoration-none" routerLink="{{ posts.id }}">{{
+              posts.title
+            }}</a>
+          </td>
+
+          <td>
+            <p class="text-truncate">{{ posts.body }}</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-paginator
+    *ngIf="initialPostsList"
+    (updateData)="updateData($event)"
+    [pageOffset]="pageOffset"
+    [data]="postsList"
+    [initialData]="initialPostsList"
+  ></app-paginator>
+</div>
