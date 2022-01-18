@@ -1,5 +1,8 @@
 # ZipHRCodingChallenge
 
+
+## (This is an unfinished project so is lacking some final features such as mobile optimisation and fully working implemented features).
+
 ## Live Site
 
 `https://ziphr-numan-mumtaz.netlify.app/`
